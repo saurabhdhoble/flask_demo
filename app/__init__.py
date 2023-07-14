@@ -33,5 +33,10 @@ app.celery = celery
 #                     level=logging.DEBUG)
 
 from app.v1.blueprint import v1_api  # import must come later to avoid circular dependency
+from app.v1.blueprints.quotes.quotes import quotes_blueprint
+from app.v1.blueprints.characters.characters import character_blueprint
+
 app.register_blueprint(v1_api, url_prefix='/v1/')
+app.register_blueprint(blueprint=quotes_blueprint, url_prefix='/v1/')
+app.register_blueprint(blueprint=character_blueprint, url_prefix='/v1/')
 print(app.url_map)
